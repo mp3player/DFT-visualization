@@ -80,7 +80,7 @@ Complex Complex::operator /= (Complex num){
     *this *= (1.0f / (mod * mod) );
     return *this;
 }
-
+//
 
 float Complex::length(){
     return std::sqrt( std::pow( this->r , 2.0f ) + std::pow( this->i , 2.0f ) );
