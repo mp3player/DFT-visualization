@@ -1,11 +1,13 @@
 #include <iostream>
 #include<fstream>
 #include <SFML/Graphics.hpp>
+#include<functional>
 
 #include "./shape/M_Circle.hpp"
 #include "./util/Complex.hpp"
 #include "./util/FFT.hpp"
 #include "./util/Parser.hpp"
+#include "test.cc"
 
 #define WIDTH 800                   //窗口大小
 #define HEIGHT 800
@@ -91,29 +93,38 @@ void animateIDFT( sf::RenderWindow * window , std::vector<M_Circle*> circles, st
 
 }
 
+int fn( int(*p)(int) ){
+
+}
+
 int main()
-{
+{   
+
+    std::function< std::vector<Complex>(std::vector<Complex>) > FN;
+
     std::vector<sf::Vector2f> coords = Parser::ParserPathFile("./assets/path/heart.json");
 
     std::vector<Complex> signal = std::vector<Complex>();
+
+    
 
     for(sf::Vector2f vec : coords ){
         signal.push_back(Complex(vec.x,vec.y));
     }
 
+    testTime1<std::vector<Complex> , std::vector<Complex> >(FFT::DFT , signal);
+
+    
+
     // dft 629个频率
     std::vector<Complex> coef = FFT::DFT(signal);
     std::vector<Complex> part = std::vector<Complex>();
-    float ratio = .1;
+    float ratio = 0;
     //只取低频部分，高频部分用0填充
     for(int i = 0 ; i < coef.size() ; ++ i){
-        if(i < ratio * coef.size())
-            part.push_back(coef[i]);
-        else
-            part.push_back(Complex(0,0));
+        part.push_back(coef[i]);
     }
 
-    // std::cout << part.size() << std::endl;
     //生成圆圈
     std::vector<M_Circle *> circles = std::vector<M_Circle *>();
 
@@ -131,7 +142,7 @@ int main()
 
     window->setFramerateLimit(MAX_FRAME_RATE);
 
-    while (window->isOpen())
+    while (!window->isOpen())
     {
         sf::Event event;
         while (window->pollEvent(event))
@@ -151,12 +162,13 @@ int main()
 
         window->clear( sf::Color::Black );
         
-        animateDFT(window,circles,signal,shape1 , 1);
-        animateIDFT(window,circles,part,shape2 , .8);
+        animateDFT(window,circles,coef,shape2 , .8);
         
 
         window->display();
     }
+
+
 
      //释放内存
     for(M_Circle * circle : circles){

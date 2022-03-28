@@ -43,3 +43,9 @@ std::vector<Complex> FFT::FT(std::vector<Complex> list){
 
     return std::vector<Complex>();
 };
+
+void process(std::vector<Complex> & signal){
+    //取对数
+    int size = signal.size();
+    std::log2(size);
+}

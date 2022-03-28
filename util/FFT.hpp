@@ -15,8 +15,11 @@ public:
     // invert discrete fourier transform
     static std::vector<Complex> IDFT( std::vector<Complex> );
 
+
     //fast fourier transform by recursion
     static std::vector<Complex> FT( std::vector<Complex> );
+private:
+    static void process(std::vector<Complex> &);
 };
 
 #endif
