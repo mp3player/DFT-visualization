@@ -80,7 +80,14 @@ Complex Complex::operator /= (Complex num){
     *this *= (1.0f / (mod * mod) );
     return *this;
 }
-//
+// == 
+bool Complex::operator == (Complex num){
+    return (this->r == num.r) && (this->i == num.r);
+}
+// != 
+bool Complex::operator != (Complex num){
+    return (this->r != num.r) || (this->i != num.i);
+}
 
 float Complex::length(){
     return std::sqrt( std::pow( this->r , 2.0f ) + std::pow( this->i , 2.0f ) );
@@ -96,9 +103,9 @@ std::ostream & operator << (std::ostream & cout , Complex num){
     return cout;
 }
 
-Complex Complex::Eulor(float ang){
-    float r = std::cos(ang);
-    float i = std::sin(ang);
+Complex Complex::Eulor(float x){
+    float r = std::cos(x);
+    float i = std::sin(x);
     return Complex(r,i);
 }
     

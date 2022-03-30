@@ -7,11 +7,9 @@
 #define PI 3.1415926f
 
 class Complex {
-private :
+public :
     float r;
     float i;
-public:
-    
 public:
     Complex() = default ;
     Complex( float );
@@ -36,6 +34,10 @@ public:
     //div
     Complex operator /  (Complex);
     Complex operator /= (Complex);
+
+    //comparison
+    bool operator == (Complex);
+    bool operator != (Complex);
     
 
     //|a + bi|

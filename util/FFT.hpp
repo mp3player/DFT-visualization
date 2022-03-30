@@ -5,21 +5,30 @@
 #include"Complex.hpp"
 
 
+#include"_typedef.hpp"
+
+
 class FFT{
-private :
-    static void Expand(std::vector<Complex> & list);
 
 public:
     //discrete fourier transform
-    static std::vector<Complex> DFT( std::vector<Complex> );
+    static C_List DFT( C_List );
     // invert discrete fourier transform
-    static std::vector<Complex> IDFT( std::vector<Complex> );
+    static C_List IDFT( C_List );
 
 
     //fast fourier transform by recursion
-    static std::vector<Complex> FT( std::vector<Complex> );
+    static C_List FT( C_List );
+    //fast invert fourier transform by recursion
+    static C_List IFT( C_List );
 private:
-    static void process(std::vector<Complex> &);
+    //预处理序列，补0操作
+    static void Process(C_List &);
+    //IFFT
+    static C_List P_IFT( C_List );
+public:
+    //内容延拓
+    static void Extention( C_List & , int );
 };
 
 #endif
