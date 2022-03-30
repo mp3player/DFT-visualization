@@ -17,9 +17,9 @@ public:
     static C_List IDFT( C_List );
 
 
-    //fast fourier transform by recursion
+    //待优化的FFT
     static C_List FT( C_List );
-    //fast invert fourier transform by recursion
+    //待优化的IFFT
     static C_List IFT( C_List );
 private:
     //预处理序列，补0操作
