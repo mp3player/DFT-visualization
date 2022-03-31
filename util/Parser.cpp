@@ -32,7 +32,7 @@ std::vector<sf::Vector2f> Parser::ParserPathFile(std::string path){
 
 
     std::vector<sf::Vector2f> vecs = std::vector<sf::Vector2f>();
-    for(int i = 0 ; i < coords.size() ; ++ i){
+    for(int i = 0 ; i < coords.size() ; i += 2){
         float x = coords[i];
         float y = coords[i + 1];
         sf::Vector2f vec(x,y);

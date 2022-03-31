@@ -17,9 +17,9 @@ add_executable(fft main.cc
     ./util/_typedef.hpp
 
 
-
-    ./test/draw.cc 
+    path.h
+    ./test/draw.cpp 
     ./test/poly.cpp
 )
 
-target_link_libraries(fft sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(fft sfml-graphics sfml-window sfml-system sfml-network sfml-audio)
