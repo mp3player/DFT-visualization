@@ -14,7 +14,7 @@ std::vector<sf::Vector2f> Parser::ParserPathFile(std::string path){
     sstream << iFile.rdbuf();
     std::string fileData = sstream.str() ;
 
-    std::regex reg ("[-\\d\\.]+");
+    std::regex reg ("[\\-\\d\\.e]+");
 
     std::vector<float> coords = std::vector<float>();
     std::cmatch m;
@@ -27,8 +27,9 @@ std::vector<sf::Vector2f> Parser::ParserPathFile(std::string path){
         }
         fileData = m.suffix().str();
     }
-    if(coords.size() % 2 != 0)
+    if(coords.size() % 2 != 0){
         coords.pop_back();
+    }
 
 
     std::vector<sf::Vector2f> vecs = std::vector<sf::Vector2f>();

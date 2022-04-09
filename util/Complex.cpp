@@ -89,6 +89,7 @@ bool Complex::operator != (Complex num){
     return (this->r != num.r) || (this->i != num.i);
 }
 
+
 float Complex::length(){
     return std::sqrt( std::pow( this->r , 2.0f ) + std::pow( this->i , 2.0f ) );
 }

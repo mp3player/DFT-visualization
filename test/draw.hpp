@@ -25,6 +25,9 @@ void animateIDFT( sf::RenderWindow * window , std::vector<M_Circle*> circles, st
 
 void drawLine();
 
-void draw();
+void drawMap();
+
+void drawHeart();
+
 
 #endif

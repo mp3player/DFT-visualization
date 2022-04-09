@@ -22,5 +22,11 @@ float testTime(C_List (*)(C_List , C_List) , C_List , C_List);
 
 void printCList(C_List list);
 
+//测试多项式计算
+void compareTime(int , int );
+
+void writeFile(C_List list , std::string fileName);
+
+void compareError( int );
 
 #endif

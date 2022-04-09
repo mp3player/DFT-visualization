@@ -27,6 +27,8 @@ sf::Transform trans(
     0.0f,0.0f,1.0f
 );
 
+sf::RenderStates states = sf::RenderStates(trans);
+
 Vex_list axis = Vex_list();
 Vex_list shape1 = Vex_list();
 Vex_list shape2 = Vex_list();
@@ -64,12 +66,10 @@ void animateIDFT( sf::RenderWindow * window , Cir_list circles, C_List coef , Ve
 
 }
 
-void draw(){
+void drawMap(){
 
     // V_list vs = Parser::ParserPathFile("./assets/path/heart.json");
     V_list vs = Parser::ParserPathFile("cd.json");
-
-    std::cout << vs.size() << std::endl;
 
     C_List signal = C_List();
 
@@ -119,6 +119,66 @@ void draw(){
 
 
 
+     //释放内存
+    for(M_Circle * circle : circles){
+        delete circle;
+    }
+}
+
+void drawHeart(){
+
+    //读数据
+    V_list vs = Parser::ParserPathFile("./assets/path/heart.json");
+    
+
+    std::cout << vs.size() << std::endl;
+
+    C_List signal = C_List();
+
+    //变成复数形式
+    for(sf::Vector2f v : vs){
+        signal.push_back( Complex(v) );
+    }
+
+    C_List freq = FFT::DFT(signal);
+    //生成圆圈
+    Cir_list circles = Cir_list();
+
+    for(int i = 0 ; i < freq.size() ; ++ i){
+        M_Circle * circle = new M_Circle(10);
+        circle->setOutlineThickness(2.0f);
+        circle->setOutlineColor(sf::Color::Red);
+        circle->setFillColor(sf::Color(1,0,0,0));
+        circles.push_back(circle);
+    }
+
+    sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "My window");
+    window->setFramerateLimit(MAX_FRAME_RATE);
+
+    while (window->isOpen())
+    {
+        sf::Event event;
+        while (window->pollEvent(event))
+        {
+            switch(event.type){
+                case sf::Event::Closed:{
+                    window->close();
+                }break;
+                case sf::Event::MouseWheelScrolled:{
+                    sf::Vector2f zoom = event.mouseWheelScroll.delta > 0 ? sf::Vector2f(1.1f,1.1f) : sf::Vector2f(.9f,.9f);
+                    trans.scale( zoom );
+                }
+            }
+            
+        }
+
+
+        window->clear( sf::Color::Black );
+
+        animateIDFT(window,circles,freq,shape2);
+
+        window->display();
+    }
      //释放内存
     for(M_Circle * circle : circles){
         delete circle;
