@@ -2,7 +2,7 @@
 #define _TEST_H_
 
 #include<ctime>
-#include"../util/Complex.hpp"
+#include"../util/complex/Complex.hpp"
 #include "../util/_typedef.hpp"
 
 //生成随机多项式系数

@@ -2,7 +2,7 @@
 #define _STRUCT_H_
 
 #include "../shape/M_Circle.hpp"
-#include"Complex.hpp"
+#include"./complex/Complex.hpp"
 #include<vector>
 #include<SFML/Graphics.hpp>
 

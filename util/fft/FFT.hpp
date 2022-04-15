@@ -1,14 +1,14 @@
-#ifndef _FT_H_
-#define _FT_H_
+#ifndef _FFT_H_
+#define _FFT_H_
 
 #include<vector>
-#include"Complex.hpp"
+#include "../complex/Complex.hpp"
 
 
-#include"_typedef.hpp"
+#include "../_typedef.hpp"
 
 
-class FT{
+class FFT{
 
 public:
     //discrete fourier transform
@@ -21,13 +21,11 @@ public:
     static C_List FT( C_List );
     //待优化的IFFT
     static C_List IFT( C_List );
-public:
+private:
     //预处理序列，补0操作
     static void Process(C_List &);
     //IFFT
     static C_List P_IFT( C_List );
-    //翻转二进制位数
-    static int Reverse( int );
 public:
     //内容延拓
     static void Extention( C_List & , int );

@@ -12,7 +12,7 @@ C_List FFT::DFT(C_List signal){
     for(int k = 0 ; k < N ; ++ k){
         Complex X(0.0f);
         for(int n = 0 ; n < N ; ++ n){
-            X += signal[n] * Complex::Eulor( -2.0f * PI * k * n / N );
+            X += signal[n] * Complex::Eulor( -2.0f * M_PI * k * n / N );
         }
         coef.push_back(X);
     }
@@ -25,7 +25,7 @@ C_List FFT::IDFT(C_List freq){
     for(int k = 0 ; k < N ; ++ k){
         Complex X(0.0f);
         for(int n = 0 ; n < N ; ++ n){
-            X += freq[n] * Complex::Eulor( 2.0f * PI * k * n / N );
+            X += freq[n] * Complex::Eulor( 2.0f * M_PI * k * n / N );
         }
         signal.push_back(X / N);
     }
@@ -53,7 +53,7 @@ C_List FFT::FT(C_List list){
 
     Complex w0(1.0f);
 
-    Complex wn = Complex::Eulor(-2.0f * PI / len);
+    Complex wn = Complex::Eulor(-2.0f * M_PI / len);
 
     for(int k = 0 ; k < len / 2 ; ++ k){
         Complex t = w0 * a1[k];
@@ -101,7 +101,7 @@ C_List FFT::P_IFT( C_List list){
 
     Complex w0(1.0f);
 
-    Complex wn = Complex::Eulor(2.0f * PI / len);
+    Complex wn = Complex::Eulor(2.0f * M_PI / len);
 
     for(int k = 0 ; k < len / 2 ; ++ k){
         Complex t = w0 * a1[k];

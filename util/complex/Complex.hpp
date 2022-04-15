@@ -4,8 +4,6 @@
 #include <ostream>
 #include <SFML/Graphics.hpp>
 
-#define PI 3.1415926f
-
 class Complex {
 public :
     float r;

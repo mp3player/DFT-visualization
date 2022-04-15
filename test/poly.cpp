@@ -4,7 +4,7 @@
 #include<vector>
 #include<fstream>
 #include"poly.hpp"
-#include "../util/FFT.hpp"
+#include "../util/fft/FFT.hpp"
 
 #define USE_FLOAT
 
