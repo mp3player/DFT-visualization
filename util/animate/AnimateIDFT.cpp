@@ -25,6 +25,7 @@ AnimateIDFT::~AnimateIDFT(){
 }
 
 void AnimateIDFT::init( C_List signal, Complex offset , float scale ){
+    finished = false;
     signal = this->setup(signal,offset,scale);
     // DFT
     this->freq = FFT::DFT(signal);
@@ -37,12 +38,12 @@ void AnimateIDFT::init( C_List signal, Complex offset , float scale ){
 
     for(int i = 0 ; i < freq.size() ; ++ i){
         M_Circle * circle = new M_Circle(10);
-        circle->setOutlineThickness(1.f);
+        circle->setOutlineThickness(2.f);
         circle->setOutlineColor(sf::Color(255,255,255,100));
         circle->setFillColor(sf::Color(1,0,0,0));
         this->circles.push_back(circle);
     }
-    axes = Vex_list(N);
+    axes = Vex_list(N + 1);
 }
 
 C_List AnimateIDFT::setup( C_List signal , Complex offset , float scale ){
@@ -65,13 +66,14 @@ void AnimateIDFT::next(){
 
     // axis.clear();
     Complex X(0.0f);
+    this->axes[0] = sf::Vector2f(0,0);
     for(int i = 0 ; i < N ; ++ i){
         
         Complex c = this->freq[i] * Complex::Eulor( 2.0f * M_PI * k * i / N );
 
         Complex next = X + c;
 
-        this->axes[i] = ((next / N).toVector());
+        this->axes[i + 1] = ((next / N).toVector());
 
         M_Circle * circle = circles[i];
         circle->setPosition( ( X / N ).toVector() );
@@ -80,17 +82,15 @@ void AnimateIDFT::next(){
         
         X = next;
     }
-    if(this->outline.size() < N)
+    if(this->outline.size() < N){
         this->outline.push_back(
             sf::Vertex( (X / N).toVector() )
         );
-
-    k = (k + 1) % N;
-
-
-
+        std::cout << this->outline.size() << std::endl;
+    }
 
     this->k = (this->k + 1 ) % N ;
+    if(k == 0)  finished = true;
 }
 
 void AnimateIDFT::run(sf::RenderWindow * window, sf::Transform transform){

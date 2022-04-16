@@ -14,6 +14,8 @@ public:
     int k;
     int N;
 
+    bool finished;
+
 public:
     AnimateIDFT( C_List , Complex = Complex(0.0f) , float = 1.0f );
 

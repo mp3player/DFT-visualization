@@ -14,13 +14,14 @@ const fs = require('fs')
 //         }
 //     })
 
-fs.readFile('./sc.json' , (err, d ) => {
+fs.readFile('./china.json' , (err, d ) => {
     let geojson = JSON.parse(d.toString());
     let features = geojson.features;
 
     for(let i = 0 ; i < features.length ; ++ i){
         let f = features[i];
         let geo = f.geometry.coordinates[0];
+        
         let str = JSON.stringify(geo);
         fs.writeFile('map/' + i + '.json',str , (err) => {
             console.log(err)

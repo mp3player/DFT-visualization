@@ -15,26 +15,29 @@
 #define B_COEF_COUNT 1470
 //多项式的大小，用于测试计算误差
 #define TEST_ERROR_COUNT 1024 * 4
-
+//窗口大小
 #define WIDTH 1920
 #define  HEIGHT 1080
+//限制帧率
+#define MAX_FRAME_RATE 180
 
+//坐标变换
 sf::Transform transform(
     1.0f,0.0f,WIDTH / 2,
     0.0f,-1.0f,HEIGHT / 2,
     0.0f,0.0f,1.0f
 );
 
-sf::Vector2i location;
-sf::Vector2f zoom;
 
 void animate();
 
 int main()
 {   
+    
 
 
     
+
     //-------------------------------------------------------------------------
 
     // 比较计算时间
@@ -50,10 +53,11 @@ int main()
 void animate(){
     std::vector<AnimateIDFT *> animateGroup = std::vector<AnimateIDFT *>();
 
-    for(int i = 0 ; i <= 1 ; ++ i){
-        V_list vertexList = Parser::ParserPathFile("map/" + std::to_string(i) + ".json");
+    for(int i = 0 ; i <= 20 ; ++ i){
+        // V_list vertexList = Parser::ParserPathFile("assets/path/map/" + std::to_string(i) + ".json");
+        V_list vertexList = Parser::ParserPathFile("js/map/" + std::to_string(i) + ".json");
         AnimateIDFT * animate = new AnimateIDFT(vertexList,Complex(-103,-30),60.0f);
-        // animateGroup.push_back(animate);
+        animateGroup.push_back(animate);
     }
 
     std::string heart = "assets/path/heart.json";
@@ -63,6 +67,7 @@ void animate(){
 
     sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "My window");
 
+    window->setFramerateLimit(MAX_FRAME_RATE);
     while (window->isOpen())
     {
         sf::Event event;
@@ -73,20 +78,9 @@ void animate(){
                     window->close();
                 }break;
                 case sf::Event::MouseWheelScrolled : {
-                    zoom = event.mouseWheelScroll.delta > 0 ? sf::Vector2f(1.1f,1.1f) : sf::Vector2f(.9f,.9f);
+                    sf::Vector2f zoom = event.mouseWheelScroll.delta > 0 ? sf::Vector2f(1.1f,1.1f) : sf::Vector2f(.9f,.9f);
                     transform.scale(zoom);
                     
-                }break;
-                case sf::Event::MouseButtonPressed : {
-                    location = sf::Mouse::getPosition(*window) ;
-                }break;
-                case sf::Event::MouseMoved : {
-                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                        sf::Vector2i currentLocation = sf::Mouse::getPosition(*window);
-                        sf::Vector2f offset = sf::Vector2f(currentLocation.x - location.x , location.y - currentLocation.y);
-                        transform.translate(offset);
-                        location = currentLocation;
-                    }
                 }break;
             }
             
@@ -94,9 +88,14 @@ void animate(){
 
 
         window->clear( sf::Color::Black );
-        heartAnimation.run(window,transform);
+        // heartAnimation.run(window,transform);
         for(AnimateIDFT * animate : animateGroup){
-            animate->run(window,transform);
+            if(!animate->finished){
+                animate->run(window,transform);
+                break;
+            }else{
+                window->draw( &(animate->outline[0]) , animate->outline.size() , sf::LinesStrip , transform);
+            }
         }
         window->display();
     }
