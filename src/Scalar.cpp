@@ -1,4 +1,4 @@
-#include "Scalar.hpp"
+#include "../include/Scalar.hpp"
 #include<cmath>
 #include<iostream>
 

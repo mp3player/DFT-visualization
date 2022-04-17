@@ -71,6 +71,8 @@
         "cfenv": "cpp",
         "iomanip": "cpp",
         "typeindex": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "complex.cpp": "c",
+        "complex.hpp": "c"
     }
 }

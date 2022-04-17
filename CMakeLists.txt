@@ -10,15 +10,16 @@ include_directories(/home/coder/lib/SFML-2.5.1/include/)
 
 
 add_executable(fft main.cc 
-    ./shape/M_Circle.cpp 
-    ./util/complex/Complex.cpp 
-    ./util/fft/FFT.cpp 
-    ./util/parser/Parser.cpp 
-    ./util/animate/AnimateIDFT.cpp
-    ./util/_typedef.hpp
-    ./util/scalar/Scalar.cpp
+    ./src/M_Circle.cpp 
+    ./src/Complex.cpp 
+    ./src/FFT.cpp 
+    ./src/Parser.cpp 
+    ./src/AnimateIDFT.cpp
+    
+    ./src/Scalar.cpp
 
 
+    ./include/_typedef.hpp
     ./test/poly.cpp
 )
 

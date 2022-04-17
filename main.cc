@@ -1,10 +1,10 @@
 #include <iostream>
 #include<fstream>
-#include "util/fft/FFT.hpp"
+#include "include/FFT.hpp"
 #include "./test/poly.hpp"
-#include "./util/animate/AnimateIDFT.hpp"
-#include "./util/parser/Parser.hpp"
-#include "./util/scalar/Scalar.hpp"
+#include "include/AnimateIDFT.hpp"
+#include "include/Parser.hpp"
+#include "include/Scalar.hpp"
 // #include "./audio/Player.hpp"
 #include<regex>
 
@@ -53,7 +53,7 @@ int main()
 void animate(){
     std::vector<AnimateIDFT *> animateGroup = std::vector<AnimateIDFT *>();
 
-    for(int i = 0 ; i <= 20 ; ++ i){
+    for(int i = 0 ; i <= 34 ; ++ i){
         // V_list vertexList = Parser::ParserPathFile("assets/path/map/" + std::to_string(i) + ".json");
         V_list vertexList = Parser::ParserPathFile("js/map/" + std::to_string(i) + ".json");
         AnimateIDFT * animate = new AnimateIDFT(vertexList,Complex(-103,-30),60.0f);
@@ -63,7 +63,6 @@ void animate(){
     std::string heart = "assets/path/heart.json";
     V_list heartPath = Parser::ParserPathFile(heart);
     AnimateIDFT heartAnimation = AnimateIDFT(heartPath);
-
 
     sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "My window");
 

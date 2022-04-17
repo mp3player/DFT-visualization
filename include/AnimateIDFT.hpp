@@ -1,7 +1,7 @@
 #ifndef _ANIMATE_IDFT_H_
 #define _ANIMATE_IDEF_H_
 
-#include"../_typedef.hpp"
+#include"_typedef.hpp"
 
 //用于执行动画，需要传入N个原始信号值，
 class AnimateIDFT{

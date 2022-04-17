@@ -1,7 +1,7 @@
-#include"AnimateIDFT.hpp"
+#include"../include/AnimateIDFT.hpp"
 #include<cmath>
 #include<iostream>
-#include "../fft/FFT.hpp"
+#include "../include/FFT.hpp"
 
 
 AnimateIDFT::AnimateIDFT(C_List signal , Complex offset , float scale){
@@ -38,7 +38,7 @@ void AnimateIDFT::init( C_List signal, Complex offset , float scale ){
 
     for(int i = 0 ; i < freq.size() ; ++ i){
         M_Circle * circle = new M_Circle(10);
-        circle->setOutlineThickness(2.f);
+        circle->setOutlineThickness(4.f);
         circle->setOutlineColor(sf::Color(255,255,255,100));
         circle->setFillColor(sf::Color(1,0,0,0));
         this->circles.push_back(circle);
@@ -86,7 +86,6 @@ void AnimateIDFT::next(){
         this->outline.push_back(
             sf::Vertex( (X / N).toVector() )
         );
-        std::cout << this->outline.size() << std::endl;
     }
 
     this->k = (this->k + 1 ) % N ;

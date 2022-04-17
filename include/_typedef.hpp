@@ -1,10 +1,10 @@
 #ifndef _STRUCT_H_
 #define _STRUCT_H_
 
-#include "../shape/M_Circle.hpp"
-#include"./complex/Complex.hpp"
-#include<vector>
-#include<SFML/Graphics.hpp>
+#include "M_Circle.hpp"
+#include "Complex.hpp"
+#include <vector>
+#include <SFML/Graphics.hpp>
 
 
 typedef std::vector<Complex>        C_List;

@@ -14,7 +14,6 @@ public:
     Complex( float , float );
     Complex( sf::Vector2f );
 
-
 public: 
     //+
     Complex operator +  (Complex);

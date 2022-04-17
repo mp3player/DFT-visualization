@@ -2,8 +2,8 @@
 #define _TEST_H_
 
 #include<ctime>
-#include"../util/complex/Complex.hpp"
-#include "../util/_typedef.hpp"
+#include"../include/Complex.hpp"
+#include "../include/_typedef.hpp"
 
 //生成随机多项式系数
 C_List randComplexVector(int len = 256);

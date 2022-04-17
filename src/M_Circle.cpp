@@ -1,4 +1,4 @@
-#include "M_Circle.hpp"
+#include "../include/M_Circle.hpp"
 
 M_Circle::M_Circle(float radius, std::size_t pointCount) : sf::CircleShape(radius,pointCount){
     offset = sf::Vector2f(radius,radius);

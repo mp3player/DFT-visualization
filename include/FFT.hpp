@@ -2,10 +2,10 @@
 #define _FFT_H_
 
 #include<vector>
-#include "../complex/Complex.hpp"
+#include "Complex.hpp"
 
 
-#include "../_typedef.hpp"
+#include "_typedef.hpp"
 
 
 class FFT{

@@ -1,7 +1,7 @@
 #ifndef _SCALAR_H_
 #define _SCALAR_H_
 
-#include"../_typedef.hpp"
+#include"_typedef.hpp"
 
 class Scalar{
 
