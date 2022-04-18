@@ -29,6 +29,20 @@
 >> #### 点值 -> 系数 O(nLogn)
 >> #### 使得多项式乘法的计算事件复杂度降低为O(nLogn)
 
+# FFT算法非递归解法
+```
+n = a.length  
 
-
+for s = 1 to log(n)
+    m = 2^s
+    w_m = e^{2pi/m}
+    for k = 0 to n - 1 by m
+        w = 1
+        for j = 0 to m / 2 - 1
+            t = w * A[k + j + m / 2]
+            u = A[k + j]
+            A[k + j] = u + t
+            A[k + j + m / 2] = u - t
+            w = w * w_m
+```
 

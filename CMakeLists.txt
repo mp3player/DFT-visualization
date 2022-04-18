@@ -20,6 +20,8 @@ add_executable(fft main.cc
 
 
     ./include/_typedef.hpp
+    ./include/fft.h
+    ./include/bit_map.h
     ./test/poly.cpp
 )
 
