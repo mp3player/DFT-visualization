@@ -16,7 +16,6 @@ public:
     // invert discrete fourier transform
     static C_List IDFT( C_List );
 
-
     //待优化的FFT
     static C_List FT( C_List );
     //待优化的IFFT

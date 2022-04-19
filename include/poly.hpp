@@ -2,11 +2,10 @@
 #define _TEST_H_
 
 #include<ctime>
-#include"../include/Complex.hpp"
-#include "../include/_typedef.hpp"
+#include "Complex.hpp"
+#include "_typedef.hpp"
 
-//生成随机多项式系数
-C_List randComplexVector(int len = 256);
+namespace poly{
 
 //系数表达的多项式乘法，卷积计算
 C_List coefProduct( C_List , C_List );
@@ -18,15 +17,12 @@ C_List valueProduct( C_List , C_List );
 float testRes(C_List , C_List );
 
 //查看计算时间
-float testTime(C_List (*)(C_List , C_List) , C_List , C_List);
-
-void printCList(C_List list);
+float recordTime(C_List (*)(C_List , C_List) , C_List , C_List);
 
 //测试多项式计算
 void compareTime(int , int );
 
-void writeFile(C_List list , std::string fileName);
 
-void compareError( int );
+}
 
 #endif

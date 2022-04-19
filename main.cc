@@ -1,22 +1,17 @@
 #include <iostream>
 #include<fstream>
 #include "include/FFT.hpp"
-#include "./test/poly.hpp"
+#include "include/poly.hpp"
 #include "include/AnimateIDFT.hpp"
 #include "include/Parser.hpp"
 #include "include/Scalar.hpp"
-// #include "./audio/Player.hpp"
-#include<regex>
-
-#include "include/fft.h"
+#include "include/_fft.hpp"
 
 
 //A多项式的阶次               
-#define A_COEF_COUNT 1024
+#define A_COEF_COUNT 1024 * 4
 //B多项式的阶次
-#define B_COEF_COUNT 1024
-//多项式的大小，用于测试计算误差
-#define TEST_ERROR_COUNT 1024 * 4
+#define B_COEF_COUNT 1024 * 4
 //窗口大小
 #define WIDTH 1920
 #define  HEIGHT 1080
@@ -34,15 +29,15 @@ sf::Transform transform(
 void animate();
 
 int main()
-{
+{   
     testfft();
     // 比较计算时间
-    // for(int i = 0 ; i < 10 ; ++ i)
-        // compareTime(A_COEF_COUNT , B_COEF_COUNT);
-    // 比较计算误差
-    // compareError(TEST_ERROR_COUNT);
+    for(int i = 0 ; i < 4 ; ++ i){
+        poly::compareTime(A_COEF_COUNT , B_COEF_COUNT);
+        std::cout << "---------------" << std::endl;
+    }
     // DFT的逆过程动画演示，正弦和余弦合成动画的演示，绘制一个心形图案
-    // animate();
+    animate();
     return 0;
 }
 
