@@ -39,7 +39,7 @@ int main()
         std::cout << "---------------" << std::endl;
     }
     // DFT的逆过程动画演示，正弦和余弦合成动画的演示
-    // animate();
+    animate();
     return 0;
 }
 
