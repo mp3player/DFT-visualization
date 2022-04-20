@@ -2,3 +2,5 @@ build
 .vscode
 octave_figure
 *.json
+
+Scalar.*

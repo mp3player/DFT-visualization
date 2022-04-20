@@ -13,7 +13,7 @@ C_List Scalar::apply(C_List list){
     // scale factor
     float rFactor = (maxC.r - minC.r) / (max - min);
     float iFactor = (maxC.i - minC.i) / (max - min);
-
+ 
     // std::cout << minC << std::endl;
     // std::cout << maxC << std::endl;
 
