@@ -30,8 +30,10 @@ void animate();
 
 int main()
 {   
+
+    //比较递归实现的FFT算法和迭代实现的FFT算法的运行时间，处理2^16个信号
     testfft();
-    // 比较计算时间
+    // 比较 卷积运算 和 应用FFT的多项式乘法 的运行时间
     for(int i = 0 ; i < 4 ; ++ i){
         poly::compareTime(A_COEF_COUNT , B_COEF_COUNT);
         std::cout << "---------------" << std::endl;
