@@ -36,8 +36,8 @@ int main()
         poly::compareTime(A_COEF_COUNT , B_COEF_COUNT);
         std::cout << "---------------" << std::endl;
     }
-    // DFT的逆过程动画演示，正弦和余弦合成动画的演示，绘制一个心形图案
-    animate();
+    // DFT的逆过程动画演示，正弦和余弦合成动画的演示
+    // animate();
     return 0;
 }
 

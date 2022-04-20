@@ -9,6 +9,7 @@
 #include <cmath>
 #include <regex>
 #include "bit_map_65536.hpp"
+
 #include "util.hpp"
 
 template <unsigned int bit_length>
@@ -131,7 +132,7 @@ C_List ifft(C_List signal){
 
 void testTimeWithFFT(){
 
-    C_List list = util::randComplexVector(65536);
+    C_List list = util::randComplexVector(65535);
 
     //测试非递归调用的时间
     std::clock_t startTime = clock();
@@ -167,7 +168,7 @@ void testfft(){
         std::cout << "------------------------------------" << std::endl;
     }
 
-    // generateMap<16>();
+    generateMap<24>();
 }
 
 #endif

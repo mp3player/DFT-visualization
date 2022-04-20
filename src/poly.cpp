@@ -22,6 +22,7 @@ C_List poly::coefProduct( C_List c1 , C_List c2 ){
 
     //计算每一项，并将结果加入到相应的系数中
     for(int i = 0 ; i < m ; ++ i){
+        if(c1[i] == 0) continue;
         for(int j = 0 ; j < n ; ++j){
             res[i + j] += c1[i] * c2[j];
         }
@@ -82,9 +83,7 @@ float poly::recordTime(C_List (*fn)(C_List , C_List) , C_List a, C_List b){
 }
 
 void poly::compareTime(int a_count , int b_count)
-{   
-    float coef_time = 0;
-    float value_time = 0;
+{
 
     C_List v1 = util::randComplexVector(a_count);
     C_List v2 = util::randComplexVector(b_count);
@@ -92,9 +91,6 @@ void poly::compareTime(int a_count , int b_count)
 
     float t1 = recordTime(coefProduct , v1 , v2);
     float t2 = recordTime(valueProduct , v1 , v2);
-
-    coef_time += t1;
-    value_time += t2;
 
     std::cout << "coef product : " << t1 << " s" << std::endl;
     std::cout << "value product : " << t2 << " s" << std::endl;
